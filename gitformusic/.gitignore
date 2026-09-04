@@ -1,0 +1,54 @@
+## Rust
+# Build output for any Cargo project in rust_core/.
+target/
+
+# rustc/rustfmt temporary files.
+**/*.rs.bk
+
+# Keep Cargo.lock files committed for reproducible application builds.
+
+## Angular / Node.js
+# Installed dependencies and Angular CLI cache.
+node_modules/
+.angular/cache/
+
+# Angular and TypeScript build output.
+dist/
+out-tsc/
+
+# Test and coverage output.
+coverage/
+.nyc_output/
+
+# Package-manager logs and debug output.
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+## Environment and local configuration
+# Keep example files such as .env.example tracked; ignore local secrets.
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+## Editors and operating systems
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+.idea/
+*.iml
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+## Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
