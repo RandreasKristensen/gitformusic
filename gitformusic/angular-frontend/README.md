@@ -1,6 +1,6 @@
 # Angular Frontend
 
-The Angular frontend is the presentation layer for the Git for Music client. It is expected to run as a web application and to be hosted inside the desktop shell through the C++/JUCE integration layer. It communicates with the proprietary cloud services through GraphQL; project content remains owned and stored by the local client according to the [data ownership diagram](../docs/diagrams/05-data-storage.mmd).
+The Angular frontend is the presentation layer for the Git for Music client. The web frontend calls the proprietary cloud services through GraphQL. In the desktop application, Angular is hosted inside the C++/JUCE integration layer and uses the native shell for application operations; the shell and Rust core handle cloud access on its behalf. Project content remains owned and stored by the local client according to the [data ownership diagram](../docs/diagrams/05-data-storage.mmd).
 
 ## Architecture references
 

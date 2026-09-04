@@ -16,6 +16,16 @@ Git for Music is a cross-platform system for versioning and sharing music projec
 
 The C++/JUCE integration layer and C# cloud services are represented in the architecture diagrams but are not implemented in this repository.
 
+## Repository evolution
+
+The project is expected to evolve through three repository-structure stages:
+
+1. **Monorepo:** build the initial vertical slices for Rust, C#, Angular, protocol contracts, and local infrastructure together while the boundaries are still changing.
+2. **Three repositories:** separate the main implementation areas into `gitformusic-core` (Rust), `gitformusic-backend` (C#), and `gitformusic-desktop` (Angular and desktop integration).
+3. **Five repositories:** split the shared contracts into `gitformusic-protocol` and operational resources into `gitformusic-infrastructure` once their ownership, release, and compatibility policies are stable.
+
+The repository should remain in the simplest stage that supports development. Splitting is driven by ownership, access control, release cadence, and API stability rather than by programming language alone.
+
 ## Architecture references
 
 - [Architecture overview](docs/diagrams/00-architecture.mmd)

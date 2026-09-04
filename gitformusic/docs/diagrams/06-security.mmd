@@ -29,8 +29,11 @@ flowchart TB
     AUTH -->|"creates authenticated session"| TOKEN
     AUTH -->|"loads account identity"| ACCOUNT
 
-    TOKEN -->|"authorizes API requests"| RUST_A
-    TOKEN -->|"authorizes API requests"| RUST_B
+    TOKEN -->|"issues access token to client"| RUST_A
+    TOKEN -->|"issues access token to client"| RUST_B
+
+    RUST_A -->|"presents token with API requests"| AUTHZ
+    RUST_B -->|"presents token with API requests"| AUTHZ
 
     AUTHZ -->|"evaluates project permissions"| ACCOUNT
 
