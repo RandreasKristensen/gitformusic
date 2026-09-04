@@ -9,5 +9,5 @@ This repository only consist of the Rust core and angular frontend, the C# backe
 
 - Rust storage/versioning core distributed project/versioning engine
     - with C++ JUCE interface
-- UI in Angular (over JUCE UI)
-- Backend / Cloud in C# (Private, another repo)
+- UI in Angular (over JUCE UI), with Apollo querying C# Backend with GraphQL
+- GraphQL Backend / Cloud in C# (Private, another repo)

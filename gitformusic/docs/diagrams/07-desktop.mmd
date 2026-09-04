@@ -1,0 +1,46 @@
+%% Desktop Application — Rust / C++ / Angular Boundaries
+flowchart TB
+
+    subgraph DESKTOP["Cross-Platform Desktop Application"]
+        direction TB
+
+        subgraph PRESENTATION["Presentation Layer"]
+            ANGULAR["Angular UI"]
+        end
+
+        subgraph NATIVE["Native Integration Layer"]
+            JUCE["C++ / JUCE Application Shell"]
+            DAW_PLUGIN["DAW Plugin / DAW Integration"]
+            FILE_UI["Native File System Integration"]
+            OS["OS Integration\nWindows / macOS / Linux"]
+        end
+
+        subgraph CORE["Rust Core"]
+            API["C-Compatible Core API"]
+            REPO["Repository Engine"]
+            VERSION["Versioning Engine"]
+            SYNC["Synchronization Engine"]
+            NETWORK["P2P Networking"]
+            CRYPTO["Cryptography"]
+            STORAGE["Object Storage"]
+        end
+    end
+
+    ANGULAR -->|"renders application state"| JUCE
+    ANGULAR -->|"requests user operations"| JUCE
+
+    JUCE -->|"calls stable native API"| API
+
+    DAW_PLUGIN -->|"requests project operations"| API
+    FILE_UI -->|"provides filesystem operations"| API
+    OS -->|"provides platform capabilities"| JUCE
+
+    API -->|"controls"| REPO
+    API -->|"controls"| VERSION
+    API -->|"controls"| SYNC
+
+    REPO -->|"uses"| STORAGE
+    VERSION -->|"uses"| STORAGE
+    SYNC -->|"uses"| NETWORK
+    SYNC -->|"uses"| CRYPTO
+    NETWORK -->|"uses"| CRYPTO

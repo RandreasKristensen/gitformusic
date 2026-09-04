@@ -1,0 +1,45 @@
+%% Identity and Security Architecture
+flowchart TB
+
+    USER["User"]
+
+    subgraph CLOUD["Cloud Identity"]
+        AUTH["Authentication Service"]
+        TOKEN["Access Token Service"]
+        ACCOUNT["Account Identity"]
+        AUTHZ["Authorization / Permission Service"]
+    end
+
+    subgraph DEVICE_A["User Device A"]
+        DEVICE_ID_A["Device Identity Keypair"]
+        KEYSTORE_A["OS-Protected Key Store"]
+        RUST_A["Rust Core"]
+    end
+
+    subgraph DEVICE_B["User Device B"]
+        DEVICE_ID_B["Device Identity Keypair"]
+        KEYSTORE_B["OS-Protected Key Store"]
+        RUST_B["Rust Core"]
+    end
+
+    USER -->|"authenticates"| AUTH
+    AUTH -->|"creates authenticated session"| TOKEN
+    AUTH -->|"loads account identity"| ACCOUNT
+
+    TOKEN -->|"authorizes API requests"| RUST_A
+    TOKEN -->|"authorizes API requests"| RUST_B
+
+    AUTHZ -->|"evaluates project permissions"| ACCOUNT
+
+    DEVICE_ID_A -->|"stored securely by"| KEYSTORE_A
+    DEVICE_ID_B -->|"stored securely by"| KEYSTORE_B
+
+    RUST_A -->|"uses device identity"| DEVICE_ID_A
+    RUST_B -->|"uses device identity"| DEVICE_ID_B
+
+    RUST_A <-->|"mutually authenticates peer"| RUST_B
+
+    RUST_A -->|"encrypts P2P payloads"| RUST_B
+
+    CLOUD -.->|"coordinates identity without possessing private keys"| DEVICE_ID_A
+    CLOUD -.->|"coordinates identity without possessing private keys"| DEVICE_ID_B

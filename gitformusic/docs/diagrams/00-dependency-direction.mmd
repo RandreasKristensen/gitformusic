@@ -1,0 +1,30 @@
+%% Music Project Platform - Dependency Direction
+flowchart TB
+
+    ANGULAR["Angular UI"]
+    JUCE["C++ / JUCE"]
+    FFI["C API / FFI"]
+    RUST["Rust Core"]
+
+    subgraph CAPABILITIES["Rust Core Capabilities"]
+        FILESYSTEM["Filesystem"]
+        NETWORK["Network"]
+        CRYPTO["Crypto"]
+    end
+
+    USER_DATA["User Data"]
+    P2P["P2P"]
+    SECURITY["Security"]
+
+    ANGULAR --> JUCE
+    JUCE --> FFI
+    FFI --> RUST
+
+    RUST --> FILESYSTEM
+    RUST --> NETWORK
+    RUST --> CRYPTO
+
+    FILESYSTEM --> USER_DATA
+    NETWORK --> P2P
+    CRYPTO --> SECURITY
+

@@ -1,0 +1,45 @@
+%% Music Project Platform - Architecture Overview
+flowchart TB
+
+    PLATFORM["Music Project Platform"]
+
+    subgraph CONTROL["Control Plane"]
+        GRAPHQL["C# / GraphQL"]
+        IDENTITY["Identity"]
+        PROJECTS["Projects"]
+        PERMISSIONS["Permissions"]
+        DEVICES["Devices"]
+        COORDINATION["Coordination"]
+        BILLING["Billing"]
+
+        GRAPHQL --- IDENTITY
+        GRAPHQL --- PROJECTS
+        GRAPHQL --- PERMISSIONS
+        GRAPHQL --- DEVICES
+        GRAPHQL --- COORDINATION
+        GRAPHQL --- BILLING
+    end
+
+    subgraph DATA["Data Plane"]
+        RUST["Rust Core"]
+        VERSIONING["Versioning"]
+        OBJECT_STORE["Object Store"]
+        P2P_SYNC["P2P Sync"]
+        CRYPTO["Crypto"]
+        FILESYSTEM["Filesystem"]
+
+        RUST --- VERSIONING
+        RUST --- OBJECT_STORE
+        RUST --- P2P_SYNC
+        RUST --- CRYPTO
+        RUST --- FILESYSTEM
+    end
+
+    OTHER_RUST["Other User's Rust Core"]
+    QUESTION["Who can access what, and how do we find each other?"]
+
+    PLATFORM --> CONTROL
+    PLATFORM --> DATA
+    CONTROL --> QUESTION
+    DATA -->|"direct P2P"| OTHER_RUST
+

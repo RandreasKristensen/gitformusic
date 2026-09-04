@@ -1,0 +1,55 @@
+%% Data Ownership and Storage Boundaries
+flowchart LR
+
+    subgraph USER_DEVICE["User Device"]
+        direction TB
+
+        PROJECT_FILES["Music Project Files"]
+        AUDIO["Audio / Stems / Samples"]
+        OBJECTS["Content-Addressed Objects"]
+        HISTORY["Version History"]
+        KEYS["Private Device Keys"]
+        CONFIG["Local Configuration"]
+    end
+
+
+    subgraph CLOUD["Cloud Platform"]
+        direction TB
+
+        ACCOUNT["Account Identity"]
+        PROJECT_META["Project Metadata"]
+        MEMBERS["Collaborators & Permissions"]
+        COMMIT_META["Commit Metadata"]
+        DEVICE_META["Device Registration"]
+        PRESENCE["Ephemeral Device Presence"]
+        BILLING["Subscription / Billing State"]
+        NOTIFICATIONS["Notification State"]
+    end
+
+
+    subgraph PEER["Other User Device"]
+        direction TB
+
+        PEER_FILES["Music Project Files"]
+        PEER_OBJECTS["Content-Addressed Objects"]
+        PEER_HISTORY["Version History"]
+        PEER_KEYS["Private Device Keys"]
+    end
+
+
+    PROJECT_FILES -->|"is versioned into"| OBJECTS
+    AUDIO -->|"is versioned into"| OBJECTS
+    HISTORY -->|"is represented by"| OBJECTS
+
+    OBJECTS <-->|"synchronizes directly"| PEER_OBJECTS
+    HISTORY <-->|"synchronizes through commits"| PEER_HISTORY
+
+    ACCOUNT -->|"authorizes"| PROJECT_META
+    PROJECT_META -->|"defines"| MEMBERS
+    PROJECT_META -->|"references"| COMMIT_META
+    DEVICE_META -->|"describes"| USER_DEVICE
+    PRESENCE -->|"temporarily describes"| USER_DEVICE
+
+    ACCOUNT -.->|"never contains project contents"| OBJECTS
+    PROJECT_META -.->|"does not store project files"| PROJECT_FILES
+    BILLING -.->|"does not own project data"| AUDIO
