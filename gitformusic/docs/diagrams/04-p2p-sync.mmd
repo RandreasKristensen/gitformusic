@@ -11,8 +11,6 @@ sequenceDiagram
     participant OS_A as Object Store A
     participant OS_B as Object Store B
 
-    rect rgb(191, 219, 254)
-
     UI_A->>RA: Request project synchronization
 
     RA->>CLOUD: Request sync session for Project X
@@ -52,5 +50,4 @@ sequenceDiagram
 
     Note over RA,RD: Project contents are never persistently stored by the cloud.
 
-    end
     end
