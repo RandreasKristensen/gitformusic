@@ -2,6 +2,8 @@
 %% P2P Synchronization — Missing Object Transfer
 sequenceDiagram
 
+    rect rgb(255, 255, 255)
+
     participant UI_A as User A / Angular UI
     participant RA as Rust Core A
     participant CLOUD as Sync Coordination Service
@@ -9,7 +11,7 @@ sequenceDiagram
     participant OS_A as Object Store A
     participant OS_B as Object Store B
 
-    rect rgb(255, 255, 255)
+    rect rgb(191, 219, 254)
 
     UI_A->>RA: Request project synchronization
 
@@ -50,4 +52,5 @@ sequenceDiagram
 
     Note over RA,RD: Project contents are never persistently stored by the cloud.
 
+    end
     end
