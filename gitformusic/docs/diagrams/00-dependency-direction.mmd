@@ -2,6 +2,8 @@
 %% Music Project Platform - Dependency Direction
 flowchart TB
 
+    subgraph BACKGROUND["Background"]
+
     ANGULAR["Angular UI"]
     JUCE["C++ / JUCE"]
     FFI["C API / FFI"]
@@ -28,4 +30,7 @@ flowchart TB
     FILESYSTEM --> USER_DATA
     NETWORK --> P2P
     CRYPTO --> SECURITY
+
+    end
+    style BACKGROUND fill:#ffffff,stroke:#ffffff,stroke-width:1px
 

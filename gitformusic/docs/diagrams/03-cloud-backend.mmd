@@ -2,6 +2,8 @@
 %% Cloud Platform - C# Backend Services
 flowchart TB
 
+    subgraph BACKGROUND["Background"]
+
     CLIENT["Angular Web / Desktop Client"]
     RUST["Rust Core on User Device"]
 
@@ -104,4 +106,7 @@ flowchart TB
     SYNC_COORD -->|"permission check"| PERMISSION
     SYNC_COORD -->|"online devices"| PRESENCE
     SYNC_COORD -->|"connection request"| RENDEZVOUS
+
+    end
+    style BACKGROUND fill:#ffffff,stroke:#ffffff,stroke-width:1px
 

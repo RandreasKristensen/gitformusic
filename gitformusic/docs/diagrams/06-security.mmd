@@ -2,6 +2,8 @@
 %% Identity and Security Architecture
 flowchart TB
 
+    subgraph BACKGROUND["Background"]
+
     USER["User"]
 
     subgraph CLOUD["Cloud Identity"]
@@ -44,3 +46,6 @@ flowchart TB
 
     CLOUD -.->|"coordinates identity without possessing private keys"| DEVICE_ID_A
     CLOUD -.->|"coordinates identity without possessing private keys"| DEVICE_ID_B
+
+    end
+    style BACKGROUND fill:#ffffff,stroke:#ffffff,stroke-width:1px

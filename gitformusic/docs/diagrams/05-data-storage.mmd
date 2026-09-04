@@ -2,6 +2,8 @@
 %% Data Ownership and Storage Boundaries
 flowchart LR
 
+    subgraph BACKGROUND["Background"]
+
     subgraph USER_DEVICE["User Device"]
         direction TB
 
@@ -54,3 +56,6 @@ flowchart LR
     ACCOUNT -.->|"never contains project contents"| OBJECTS
     PROJECT_META -.->|"does not store project files"| PROJECT_FILES
     BILLING -.->|"does not own project data"| AUDIO
+
+    end
+    style BACKGROUND fill:#ffffff,stroke:#ffffff,stroke-width:1px

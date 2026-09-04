@@ -2,6 +2,8 @@
 %% Rust Core — Local Versioning and Synchronization Engine
 flowchart TB
 
+    subgraph BACKGROUND["Background"]
+
     %% =========================================================
     %% PUBLIC INTERFACE
     %% =========================================================
@@ -189,3 +191,6 @@ flowchart TB
     TRANSFER -->|"protects payloads with"| AEAD
 
     %% =========================================================
+
+    end
+    style BACKGROUND fill:#ffffff,stroke:#ffffff,stroke-width:1px
